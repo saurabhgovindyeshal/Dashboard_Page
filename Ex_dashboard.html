@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+ <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  font-family: "Lato", sans-serif;
+}
+
+.sidenav {
+  height: 100%;
+  width: 220px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #202A44;
+  overflow-x: hidden;
+  padding-top: 20px;
+  box-shadow :rgb(0 0 0 / 35%) 0px 5px 15px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+
+.sidenav a {
+  padding: 6px 6px 6px 32px;
+  text-decoration: none;
+  font-size: 16px;
+  color: #fff;
+  display: block;
+}
+
+.sidenav a:hover {
+  transition: 0.3s;
+  color:  black;
+  border-right: 6px solid #C2BFC4;
+  background-color: white;
+}
+
+.main {
+  margin-left: 200px; /* Same as the width of the sidenav */
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+.box-card{
+    box-shadow :rgb(0 0 0 / 20%) 0px 5px 15px; 
+    height: 120px; 
+    width: 230px;
+    color: #111;
+    margin-top: 20px;
+    margin-right: 1px; 
+    margin-left: 50px;
+    margin-inline-end: 5px;
+    border-radius: 5px;
+    
+    text-align: center;
+
+}
+div.columns{ 
+    width: 100px;
+} 
+div.columns div{
+    width: 150px; height: 100px; float: left;
+}
+
+.graph{
+
+}
+.logo{
+
+            background-image: url(logo.jpg);
+            background-repeat: repeat;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-top: 15px;
+            font-size: 30px;
+            text-align: center;
+            font-weight: bold;
+           
+            font-family: 'Steelfish Rg', 'helvetica neue',
+                     helvetica, arial, sans-serif;
+            font-weight: 900;
+            -webkit-font-smoothing: antialiased;
+}
+</style>
+</head>
+<body>
+
+<div class="sidenav">
+  <p class="logo">ThinkD</p>
+  <
+  <a href="#"><i class="far fa-chart-bar"></i> Dashboard</a>
+  <a href="#"><i class="fal fa-edit"></i> Services</a>
+  <a href="#"><i class="far fa-thumbs-up"></i> Clients</a>
+  <a href="#"><i class="far fa-address-card"></i> About</a>
+</div>
+
+<div class="main">
+  <h2 style="margin-left: 45px; margin-top: 25px; font-size: 40px; background: -webkit-linear-gradient(#0B0B45, #800000);-webkit-background-clip: text; -webkit-text-fill-color: transparent;">Dashboard</h2>
+      <hr>
+<!--       Upper box in website  -->
+        <div class="row">
+
+
+            <div class="box-card">
+                <h5 class="card-title">Total +PO</h5>
+                <h1>4535846</h1>
+
+            </div>
+
+
+            <div class=" box-card">
+                <h5 class="card-title">Total -NE</h5>
+                <h1>75847</h1>
+            </div>
+
+
+            <div class="box-card">
+                <h5 class="card-title">Confirm Case</h5>
+                <h1>783483</h1>
+            </div>
+
+
+            <div class="box-card">
+                <h5 class="card-title">Active</h5>
+                <h1>798528</h1>
+            </div>
+
+        </div>
+
+<!--       Upper four box end -->
+      
+
+<!--       main chart start -->
+      <div class="row">
+
+<!--       card for graph and chart display -->
+
+      <div class="card" style="width: 32rem; height: 25rem; margin-left: 50px; margin-top: 50px; box-shadow :rgb(0 0 0 / 20%) 0px 5px 15px;">
+  
+        <div class="card-body">
+          <h5 class="card-title">Line Chart</h5>
+          <h6 class="card-subtitle mb-2 text-muted">line</h6>
+          <div>
+               <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+          </div>
+        </div>
+      </div>
+
+<!--       card for graph and chart display -->
+
+      <div class="card" style="width: 32rem; height: 25rem; margin-left: 15px; margin-top: 50px; box-shadow :rgb(0 0 0 / 20%) 0px 5px 15px;">
+  
+        <div class="card-body">
+          <h5 class="card-title">Pie Chart</h5>
+          <h6 class="card-subtitle mb-2 text-muted">doughnut</h6>
+          <div>
+                    <canvas id="myChart1" style = "width :65vh; height: 40vh;"></canvas>
+                     
+          </div>
+        </div>
+      </div>
+    </div>
+
+<!--     main chart row end -->
+  </div>
+</div>
+
+  
+</body>
+<script>
+var xValues = [50,60,70,80,90,100,110,120,130,140,150];
+var yValues = [7,8,8,9,9,9,10,11,14,14,15];
+
+new Chart("myChart", {
+  type: "line",
+  data: {
+    labels: xValues,
+    datasets: [{
+      fill: false,
+      lineTension: 0,
+      backgroundColor: "rgba(0,0,255,1.0)",
+      borderColor: "rgba(0,0,255,0.1)",
+      data: yValues
+    }]
+  },
+  options: {
+    legend: {display: false},
+    scales: {
+      yAxes: [{ticks: {min: 6, max:16}}],
+    }
+  }
+});
+</script>
+<script>
+// var xValues1 = ["Italy", "France", "Spain", "USA", "Argentina"];
+// var yValues1 = [55, 49, 44, 24, 15];
+// var barColors = [
+//   "#b91d47",
+//   "#00aba9",
+//   "#2b5797",
+//   "#e8c3b9",
+//   "#1e7145"
+// ];
+
+// new Chart("myChart1", {
+//   type: "doughnut",
+//   data: {
+//     labels: xValues1,
+//     datasets: [{
+//       backgroundColor: barColors,
+//       data: yValues1
+//     }]
+//   },
+//   options: {
+//     title: {
+//       display: true,
+//       text: "World Wide Wine Production 2018"
+//     }
+//   }
+// });
+var ctx = document.getElementById("myChart1");
+var myChart = new Chart(ctx, {
+  type: 'doughnut',
+  data: {
+    labels: ['OK', 'WARNING', 'CRITICAL', 'UNKNOWN'],
+    datasets: [{
+      label: '# of Tomatoes',
+      data: [12, 19, 3, 5],
+      backgroundColor: [
+        'rgba(255, 99, 132, 0.5)',
+        'rgba(54, 162, 235, 0.2)',
+        'rgba(255, 206, 86, 0.2)',
+        'rgba(75, 192, 192, 0.2)'
+      ],
+      borderColor: [
+        'rgba(255,99,132,1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(255, 206, 86, 1)',
+        'rgba(75, 192, 192, 1)'
+      ],
+      borderWidth: 1
+    }]
+  },
+  options: {
+    //cutoutPercentage: 40,
+    responsive: false,
+
+  }
+});
+
+</script>
+</html> 
